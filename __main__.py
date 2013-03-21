@@ -13,7 +13,7 @@ BASELINE_THRESHOLDS = (1e2, 1e3, 1e4)
 GROWTH_THRESHOLDS = (0.05, 0.2, 0.3)
 NOW = datetime.utcnow()
 
-set_theme('space')
+set_theme('valentine')
 
 text = {}
 
