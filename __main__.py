@@ -65,13 +65,20 @@ def table(profiles):
                       key=lambda x: x['hits'],
                       reverse=True)) +\
           [{'repo': '!default', 'badge': BADGE % 0}]
-    
-Profiles().map(table).show('table',
-                           id='repos',
-                           size=(12, 6),
-                           json_export=True)
 
-Title("**{num_repos}** badges installed", text)
+def num(profiles):
+    s = set()
+    for profile in profiles:
+        s |= frozenset(profile['repos'])
+        yield profile
+    text['all'] = len(s)
+    
+Profiles().map(num).map(table).show('table',
+                                    id='repos',
+                                    size=(12, 6),
+                                    json_export=True)
+
+Title("**{num_repos}** badges installed ({all} in total)", text)
 
 Description("""
 The number of badges has {change.verb} by {change} 
