@@ -19,7 +19,7 @@ text = {}
 
 def weekly_uniques(profiles):
     def weekly_visits(visits):
-        for visit in reversed(visits):
+        for visit in sorted(visits, reverse=True):
             t = datetime.strptime(visit['tstamp'], TFORMAT)
             days = (NOW - t).days
             if days < 14:
