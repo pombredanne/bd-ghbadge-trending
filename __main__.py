@@ -31,7 +31,7 @@ def weekly_uniques(profiles):
         num_profiles += 1
         for repo, visits in profile['repos'].items():
             for week, hits in groupby(weekly_visits(visits)):
-                yield repo, week
+                yield repo.split('?')[0], week
     text['num_profiles'] = num_profiles
                    
 def trending(profiles):
@@ -69,7 +69,7 @@ def table(profiles):
 def num(profiles):
     s = set()
     for profile in profiles:
-        s |= frozenset(profile['repos'])
+        s |= frozenset(r.split('?')[0] for r in profile['repos'])
         yield profile
     text['all'] = len(s)
     
